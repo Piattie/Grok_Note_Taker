@@ -4,7 +4,7 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +25,7 @@ app.get('/api/notes', (req, res) => {
 // POST route for saving a new note
 app.post('/api/notes', (req, res) => {
     const newNote = { id: uuidv4(), ...req.body };
+    console.log(newNote);
     fs.readFile('db/notes.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
